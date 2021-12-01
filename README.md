@@ -6,7 +6,7 @@ This is a ROS melodic package that publishes data from a BNO055 IMU connected to
 
 Make sure ROS melodic and Python3 are installed. 
 
-Install the Python library for the BNO055
+Install the Python library for the BNO055:
 ```
 sudo pip3 install adafruit-circuitpython-bno055
 ```
