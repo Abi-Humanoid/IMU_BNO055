@@ -41,7 +41,6 @@ class SensorIMU:
  
    def get_ros_params(self):
  
-       self.serial_port = rospy.get_param(self.node_name + '/serial_port','/dev/ttyACM0')
        self.frame_id = rospy.get_param(self.node_name + '/frame_id', 'imu_link')
        self.frequency = rospy.get_param(self.node_name + '/frequency', 5)
        self.use_magnetometer = rospy.get_param(self.node_name + '/use_magnetometer', False)
