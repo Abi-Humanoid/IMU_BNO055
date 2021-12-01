@@ -1,0 +1,17 @@
+<?xml version="1.0"?> 
+<launch>
+
+    <arg name="frame_id" default="imu_link" />
+    <arg name="frequency" default="50" /> 
+    <arg name="use_magnetometer" default="false" />
+    <arg name="use_temperature" default="false" /> 
+
+
+    <node pkg="IMU_BNO055" type="imu_node.py" name="imu_bno055" output="screen">
+        <param name="frame_id" value="$(arg frame_id)" />
+        <param name="frequency" value="$(arg frequency)" />
+        <param name="use_magnetometer" value="$(arg use_magnetometer)" />    
+        <param name="use_temperature" value="$(arg use_temperature)" />    
+    </node>
+
+</launch>
