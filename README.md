@@ -33,6 +33,12 @@ You can now view the published data e.g. imu/data
 rostopic echo imu/data
 ```
 
+## ROS parameters
+* frame_id: the frame id
+* use_temperature: publish the temperature data
+* use_magnetometer: publish the magnetic field
+* frequency: set the publishing frequency
+
 ## Published topics
 * imu/data (sensor_msgs/Imu)
     - Includes linear accelerations and angular velocities and orientations.
