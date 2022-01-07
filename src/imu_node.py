@@ -30,15 +30,16 @@ class SensorIMU:
        if self.use_temperature == True:
            self.pub_imu_temperature = rospy.Publisher('imu/temperature', Temperature, queue_size=1)
  
-       # Connect to IMU via I2C connetion
+       # Connect to IMU via I2C connection
        i2c = busio.I2C(board.SCL, board.SDA)
        self.sensor = adafruit_bno055.BNO055_I2C(i2c)
  
-       # Internal variables
-       self.imu_data_seq_counter = 0
+       # Internal variables (counters for the messages, added to the headers)
+       self.imu_data_seq_counter = 0 
        self.imu_magnetometer_seq_counter = 0
        self.imu_temperature_seq_counter = 0
  
+   # Extract the specified ROS parameters and set the associated field values
    def get_ros_params(self):
  
        self.frame_id = rospy.get_param(self.node_name + '/frame_id', 'imu_link')
@@ -46,7 +47,7 @@ class SensorIMU:
        self.use_magnetometer = rospy.get_param(self.node_name + '/use_magnetometer', False)
        self.use_temperature = rospy.get_param(self.node_name + '/use_temperature', False)
  
- 
+   
    def get_quat(self):
        return self.sensor.quaternion
  
@@ -62,6 +63,7 @@ class SensorIMU:
    def get_temp(self):
        return self.sensor.temperature
  
+   # Publish the orientation, linear acceleration and angular velocity as an sensor_msgs/Imu ROS message
    def publish_imu_data(self):
        imu_data = Imu() 
        imu_data.header.stamp = rospy.Time.now()
@@ -109,6 +111,7 @@ class SensorIMU:
  
        self.pub_imu_magnetometer.publish(imu_magnetometer)
  
+   # Publish the temperature as a sensor_msgs/Temperature message
    def publish_imu_temperature(self):
  
        imu_temperature = Temperature()
@@ -127,7 +130,8 @@ class SensorIMU:
    def run(self):
        # Set frequency
        rate = rospy.Rate(self.frequency)
- 
+       
+       # Keep publishing data from the IMU at the specified frequency
        while not rospy.is_shutdown():
            self.publish_imu_data()
  
