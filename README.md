@@ -1,6 +1,6 @@
 # IMU_BNO055
 
-This is a ROS melodic package that publishes data from a BNO055 IMU connected to a computer over an I2C connection. It uses the https://github.com/adafruit/Adafruit_CircuitPython_BNO055 Python library to interact with the sensor.
+This is a ROS melodic package that publishes data from a BNO055 IMU connected to a computer over an **I2C** connection. It uses the https://github.com/adafruit/Adafruit_CircuitPython_BNO055 Python library to interact with the sensor. Information about the sensor can be found at https://learn.adafruit.com/adafruit-bno055-absolute-orientation-sensor.
 
 ## Installation
 
@@ -46,3 +46,14 @@ rostopic echo imu/data
     - The magnetic orientation vector
 * imu/temperature (sensor_msgs/Temperature)
     - Temperature ºC
+
+## Example usage with a Jetson Xavier NX
+### Wiring
+* Connect pin 1 of the NX to **vin** of the IMU
+* Connect pin 3 of the NX to **SDA** of the IMU
+* Connect pin 5 of the NX to **SCL** of the IMU
+* Connect pin 6 of the NX to **GND** of the IMU
+
+A diagram of the pins of the Jetson Xavier NX is shown below:
+![image](https://user-images.githubusercontent.com/48355111/148533985-689fad68-a840-4d0d-9918-c7365c2475f6.png)
+
